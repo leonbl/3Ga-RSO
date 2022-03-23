@@ -1,3 +1,5 @@
+// Popravi tako, da lahko pošlješ vrednosti večje od 255
+
 import processing.serial.*;
 Serial mojPort;
 
@@ -9,12 +11,16 @@ void setup(){
 
 void draw(){
   background(255);
-  char bajt = 0;
-  while(mojPort.available() > 0){
-    bajt = (char)mojPort.read();
-    print(bajt);
+  char bajt1 = 0, bajt2 = 0, bajt3 = 0;
+  if(mojPort.available() >= 5){
+    if(mojPort.read() == 'S'){
+      bajt1 = (char)mojPort.read();
+      bajt2 = (char)mojPort.read();
+      bajt3 = (char)mojPort.read();
+      print(bajt1);
+    }
   }
-  fill(bajt);
-  rect(100, 100, 600, 300);
-  delay(200);
+  fill(bajt1, bajt2, bajt3);
+  rect(bajt1, bajt3, bajt2*2, bajt3*2);
+  delay(10);
 }
