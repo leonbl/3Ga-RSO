@@ -5,6 +5,9 @@ void setup() {
 }
 
 void loop() {
+  Serial.write('S');
   Serial.write(random(256));
-  delay(200);
+  Serial.write(random(256));
+  Serial.write(random(256));
+  delay(10);
 }
